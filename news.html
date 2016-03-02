@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>新闻动态</title>	
+    <link rel="icon" href="image/tubiao2.ico">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/reset.css"> 
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/modernizr.js"></script>
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+ 	<style>
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 500px;}
+		.htmleaf-header>h1{
+			font-size:50px;}
+		#cd-nav header h2{font-family:'楷体'; font-size:24px; color:rgb(146,168,209);}
+		.zhong{
+			background:#FFF; 
+			width:100%;}
+    	.grid {
+			overflow: auto;
+			will-change: transform, transform-origin;
+			-webkit-transition: -webkit-transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform-origin 0.05s ease;
+			transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), -ms-transform-origin 0.05s ease;
+			transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), transform-origin 0.05s ease;
+		}
+		.grid__item {
+			position: relative;
+			float: left;
+			height: 33.333vh;
+			background: #f7f7f7;
+		}
+		.grid__item:hover .grid__title {
+			color: #ef5350;
+		}
+		.grid__item--4 {
+			width: 33.333%;
+		}
+		@media (max-width: 700px) {
+		  .grid__item {
+		  	width: 100%;
+			height: 15vh;
+		  }
+		}
+		.grid__link {
+		  will-change: opacity;
+		  display: -webkit-box;
+		  display: -webkit-flex;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -webkit-flex-flow: column wrap;
+			  -ms-flex-flow: column wrap;
+				  flex-flow: column wrap;
+		  -webkit-box-pack: center;
+		  -webkit-justify-content: center;
+			  -ms-flex-pack: center;
+				  justify-content: center;
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  padding: 3vh 3vw;
+		  -webkit-transition: all 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+		  transition: all 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+		.grid__title {
+		  font-size: 24px;
+		  font-weight: 700;
+		  color: rgba(0, 0, 0, 0.87);
+		  text-transform: capitalize;
+		  line-height: 1.3;
+		}
+		.grid p {
+		  margin-top: 25px;
+		  color: rgba(0, 0, 0, 0.54);
+		  padding-bottom: 10px;
+		  box-shadow: inset 0 -4px #ef5350;
+		}
+		
+		.post {
+		  position: fixed;
+		  z-index: 10;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  overflow-y: auto;
+		  min-height: 100vh;
+		  visibility: hidden;
+		  opacity: 0;
+		  -webkit-transform: scale(0.4);
+			  -ms-transform: scale(0.4);
+				  transform: scale(0.4);
+		  background: #f7f7f7;
+		  -webkit-backface-visibility: hidden;
+				  backface-visibility: hidden;
+		  -webkit-transition: all 0.7s 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+				  transition: all 0.7s 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+		.post--active {
+		  visibility: visible;
+		  opacity: 1;
+		  -webkit-transform: scale(1);
+			  -ms-transform: scale(1);
+				  transform: scale(1);
+		}
+		.post--hide {
+		  -webkit-transition: all 0.6s 0s cubic-bezier(0.23, 1, 0.32, 1);
+				  transition: all 0.6s 0s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+		.post__wrapper {
+		  max-width: 800px;
+		  margin: 0 auto;
+		  padding: 15vh 5vw;
+		}
+		.post__back, .post__forw {
+		  position: absolute;
+		  top: 3vh;
+		  left: 2vw;
+		  display: -webkit-box;
+		  display: -webkit-flex;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -webkit-box-align: center;
+		  -webkit-align-items: center;
+			  -ms-flex-align: center;
+				  align-items: center;
+		  font-size: 20px;
+		  color: rgba(0, 0, 0, 0.7);
+		  -webkit-transition: color .2s ease-out;
+				  transition: color .2s ease-out;
+		}
+		.post__back > svg, .post__forw > svg {
+		  fill: rgba(0, 0, 0, 0.7);
+		  margin-right: 1vw;
+		}
+		.post__back:hover, .post__forw:hover {
+		  color: #ef5350;
+		}
+		.post__back:hover > svg, .post__forw:hover > svg {
+		  fill: #ef5350;
+		}
+		.post__forw {
+		  left: auto;
+		  right: 2vw;
+		}
+		.post__forw > svg {
+		  margin-right: 0;
+		  margin-left: 1vw;
+		}
+		.post h3 {
+		  margin: 0 0 25px 0;
+		  color: rgba(0, 0, 0, 0.54);
+		  padding-bottom: 10px;
+		  box-shadow: inset 0 -4px #ef5350;
+		}
+		.post p {
+		  font-size: 24px;
+		  line-height:28px;
+		  font-weight: 300;
+		  color: rgba(0, 0, 0, 0.87);
+		  margin: 0 0 25px 0;
+		}
+		.post h1 {
+		  font-size: 36px;
+		  font-weight: 700;
+		  margin: 0 0 25px;
+		}
+		.more{
+			float:right;
+			font-size:18px;
+			margin:20px;
+			color:#333;}
+		.more:hover{color:#999;}
+		@media (max-width: 1100px) {
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 350px;}
+		.cd-section header{
+			height:350px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-10px;
+			font-size:40px;}
+		.zong{
+			top:-10px;
+			font-size:22px;}
+		.related{
+			font-size:20px;}
+		.fa{
+			font-size:50px;
+			}
+		.cd-nav em{
+			font-size:20px;}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:24px;}
+		.grid__title{
+			font-size:20px;}
+		.post h1{
+			font-size:30px;}
+		.post p{
+			font-size:22px;}
+		.post__wrapper{
+			max-width:900px;}
+		.grid__item {
+			height: 26vh;
+		  }
+		}
+		
+	@media (max-width: 900px) {
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 300px;}
+		.cd-section header{
+			height:300px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:0px;
+			font-size:30px;}
+		.zong{
+			top:0px;
+			font-size:20px;}
+		.related{
+			font-size:18px;}
+		.fa{
+			font-size:45px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:20px;}
+		.grid__title{
+			font-size:18px;}
+		.post h1{
+			font-size:24px;}
+		.post p{
+			font-size:18px;}
+		.post__wrapper{
+			max-width:700px;}
+		.grid__item {
+			width:800px;
+			height: 15vh;
+		  }
+		}
+		@media (max-width: 800px) {
+		section>header{
+			background-size:100% 250px;}
+		.cd-section header{
+			height:250px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-40px;
+			font-size:30px;}
+		.zong{
+			top:-60px;
+			font-size:18px;
+			line-height:22px;}
+		.related{
+			font-size:18px;}
+		.fa{
+			font-size:40px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:18px;}
+		.grid__title{
+			font-size:16px;}
+		.post h1{
+			font-size:20px;}
+		.post p{
+			font-size:16px;}
+		.post__wrapper{
+			max-width:600px;}
+		.post__wrapper h3{
+			font-size:10px;}
+		.post__forw,.post__back{
+			font-size:16px;}
+		}
+		@media (max-width: 600px) {
+		section>header{
+			background-size:100% 180px;}
+		.cd-section header{
+			height:180px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-30px;
+			font-size:20px;}
+		.zong{
+			top:-30px;
+			font-size:12px;
+			line-height:14px;}
+		.related{
+			font-size:12px;}
+		.fa{
+			font-size:40px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		.cd-nav em{
+			font-size:14px;
+			font-weight:400;}
+		#cd-nav header h2{
+			font-size:16px;
+			font-weight:400;}
+		.grid__item {
+			width:100%;
+			height: 10vh;
+		  }
+		.grid__link h4{
+			 visibility:hidden;}
+		.grid__title{
+			font-size:12px;}
+		.post h1{
+			font-size:16px;}
+		.post p{
+			font-size:12px;}
+		.post__wrapper{
+			max-width:450px;}
+		.post__wrapper h3{
+			font-size:8px;}
+		.post__forw,.post__back{
+			font-size:14px;}
+		}
+		@media (max-width: 450px) {
+		section>header{
+			background-size:100% 150px;}
+		.cd-section header{
+			height:150px;}
+		.zong{
+			top:-50px;
+			font-size:10px;
+			line-height:12px;}
+		.cd-nav em{
+			font-size:16px;}
+		.cd-nav li{
+			height:calc((100vh - 116px)/8);}
+		#cd-nav header h2{
+			font-size:18px;}
+		.post__forw,.post__back{
+			font-size:12px;}
+		}
+    </style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<a href="#cd-nav" class="cd-nav-trigger">
+			Menu<span></span>
+		</a>
+		<main>
+			<section class="cd-section index cd-selected">
+				<header>
+					<div class="cd-title">
+						<header class="htmleaf-header">
+							<h1>欢迎来到华南农业大学<span>Welcome To SCAU</span></h1>
+                            <div class="zong">&nbsp;&nbsp;&nbsp;&nbsp;作为广州最大的校园，关心华农的不仅是华农的师生。电视、报纸都曾报导过华农新闻，“华农情侣学霸”、紫荆美景以及最新的科研成果等等都曾成为众人热议的话题。精彩，每天在这里上演。</div>
+						</header>
+					</div>
+				</header>
+			</section>
+            <div class="zhong">
+                <article class="htmleaf-container" style="width:80%; position:relative; top:20px;">
+                    <ul class="grid">
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;我校人大代表、政协委员在全省“两会”上积极参政议政</h2>
+                                <h4>2016-02-01</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;校领导看望慰问部分老同志和教职工</h2>
+                                <h4>2016-01-31</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;我校工程学院工会获“全国模范职工小家”荣誉称号</h2>
+                                <h4>2016-01-27</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;【军训快讯】学校召开2015级新生军训总结大会</h2>
+                                <h4>2016-01-26</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;学校艺术团话剧队摘取广州大戏节头奖</h2>
+                                <h4>2016-01-25</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;我校民乐团、合唱团分别获广东省大学生器乐、声乐比赛一等奖</h2>
+                                <h4>2016-01-22</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;【军训快讯】咸春龙杨运东检查军训工作</h2>
+                                <h4>2016-01-20</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;《中国传统农器古今图谱》研讨会在我校召开</h2>
+                                <h4>2016-01-19</h4>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                                <h2 class="grid__title">&nbsp;我校2016年高水平运动队羽毛球项目招生考试顺利进行</h2>
+                                <h4>2016-01-18</h4>
+                            </a>
+                        </li>
+                        <a href="http://web.scau.edu.cn/hnnydx/xcb/xcb_news/" class="more">更多...</a>
+                    </ul>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;我校人大代表、政协委员在全省“两会”上积极参政议政</h1>
+                            <h3>撰写时间:2016-02-01      来源:党委统战部</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;1月23日至26日，政协广东省第十一届委员会四次会议在广州召开。我校8位省政协委员出席会议，省政府参事蒋爱民等3位同志列席了会议。25日至30日，广东省第十二届人大代表会议在广州召开，我校副校长、全国人大代表吴鸿，省政府参事胡浩民列席省人大会议。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;我校参会人员在大会中认真履职，就第十一届省政协常委会工作、提案工作和省政府工作积极参政议政、建言献策。会议期间，我校的省政协委员共提交了８件提案。分别是，倪根金委员的《关于推进广东申报中国和全球重要农业文化遗产的提案》和《关于推进粤海关博物馆建设、助力一带一路发展的提案》；年海委员的《关于建立畜牧养殖污染物排放可追朔制度，尽快完成减排目标的提案》、《关于加快推进粤东西北地区生态产业发展的提案》、《关于完善污染源监测信息发布平台建设，实时公布自动监测数据的提案》；李国清委员的《关于大力推行“智慧养老”的建议》、《加强我省食品安全监管的建议》和罗必良委员的《关于创新精准扶贫工作机制的建议》。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;“两会”期间，我校参会人员认真履职，积极参政议政，围绕关系我省十三五规划、创新驱动发展战略、高水平大学建设等经济社会发展的重大问题，建言献策，多位委员和代表的发言刊登在大会简报上或被《南方日报》等多家媒体报道；省政协委员、校民进总支主委陈日远教授代表民进广东省委在本次的大会发言环节登台发言。（文/ 党委统战部）</p>
+    （责任编辑：李敏）
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;校领导看望慰问部分老同志和教职工</h1>
+                            <h3>撰写时间:2016-01-31      来源:宣传部</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;春节将至，1月28日至31日，校党委书记李大胜、校长陈晓阳分别看望慰问我校部分老同志和教职工。杨运东副校长以及党办、校办、组织部、资源环境学院、动物科学学院、工程学院、公共管理学院、校工会等单位负责同志分别陪同参加了慰问活动。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;在看望原广东省政协副主席李金培、中国科学院院士卢永根教授、中国工程院院士罗锡文教授以及我校原校党委书记胡守训、原校长骆世明时，李大胜书记和陈晓阳校长关切询问他们的身体及生活情况，向他们汇报学校发展情况，感谢他们为学校发展做出的贡献，希望他们一如既往地关心、支持学校的各项工作，并多提宝贵意见和建议。慰问中，校领导代表学校向他们致以新年问候和良好祝愿并送上慰问金，同时转达了广东省委教育工委的问候。他们对李大胜书记和陈晓阳校长一行的到访表示感谢，并在交谈中回忆了自己在华农创业奋斗的往事，表示学校近几年的发展成绩有目共睹，将会一如既往地关心支持学校发展。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;在慰问部分困难教职工时，李大胜书记和陈晓阳校长详细了解他们身体健康、家庭生活以及目前教学科研情况，鼓励他们一定要保持积极乐观心态，积极面对生活，学校将会一如既往地给予支持帮助。教职工们对校领导的专程慰问表示由衷感激，表示自己将一定克服困难、努力工作，回报学校的关爱。（文/图 汪路勇）</p>
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;我校工程学院工会获“全国模范职工小家”荣誉称号</h1>
+                            <h3>撰写时间:2016-01-27      来源:工程学院</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;日前，中华全国总工会下发《关于表彰全国模范职工之家、全国模范职工小家、全国优秀工会工作者的决定》。其中，我校工程学院工会获“全国模范职工小家”荣誉称号。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;近年来，我校工程学院工会在校工会的指导和学院党政的大力支持下，积极参与学院民主管理，不断推进师德师风建设，切实维护教职工合法权益，积极开展丰富的教职工文体活动，努力加强自身建设，倾力打造温馨的“教工之家”，取得了较好成绩。曾先后获得我校“工会工作先进集体”，广东省教科文卫“模范职工小家”、“广东省模范职工小家”等荣誉称号。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;此次荣获“全国模范职工小家”称号，是对该院工会多年工作的高度肯定。今后，工程学院工会还将以此为契机，进一步凝心聚力、改革创新，为学校、学院的发展做出新的贡献。（文/图 工程学院　高锐涛）</p>
+                            (责任编辑：蒙丽） 
+    
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;【军训快讯】学校召开2015级新生军训总结大会</h1>
+                            <h3>撰写时间:2016-01-26      来源:宣传部</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;1月26日下午，学校召开2015级新生军训总结大会，表彰军训工作先进单位和先进个人。校党委副书记、军训师政委陈少雄，副校长、军训师师长杨运东参加会议、讲话并为先进代表颁奖。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;杨运东在总结讲话中说：今年军训天气较寒冷，阴雨时间长，气候变化大。参训工作人员和教师不畏严寒、雨淋，早出晚归、坚守岗位，始终和同学们一起战斗在训练场上。在思想上，积极引导，耐心细致，对参训学生进行精神鼓舞和激励。在生活上，更是无微不至地关心照顾参训学生。保证了军训内容落到实处，确保了军训工作安全、顺利完成。经过两周紧张艰苦的军训，同学们的皮肤虽然晒黑了，身体也变瘦了，但两眼更有神了，步伐更坚定了，身体更结实了，意志更坚强了。更重要的是，昔日倍受父母宠爱的掌上明珠，经过军训的洗礼，刚毅替代了稚气，坚强战胜了脆弱，自信取代了依赖。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;陈少雄宣读了表彰通报。他希望广大师生以先进为榜样，学习他们的精神和品质，在今后的工作和学习中继续发扬军训的优良传统和作风。希望受表彰的单位和个人，戒骄戒躁，克服缺点，继续努力，为学校建设高水平大学做出新的贡献。（文｜图 宣传部、武装部、学生工作部 杨新军 江青英 邓平宇）</p>
+                            （责任编辑：杨新军）
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;学校艺术团话剧队摘取广州大戏节头奖</h1>
+                            <h3>撰写时间:2016-01-25      来源:艺术学院</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;日前，广州市第十届大学生戏剧节暨第三届青年非职业戏剧节（简称大戏节）大赛圆满落幕。我校艺术团话剧队选送的原创剧《欢迎光临服务缘西餐厅》（指导老师朱虹）参加了本次大赛，并从来自全国各地的34个大学生队伍中脱颖而出，以95.9的平均分夺得了大赛最高奖项——“最具创造力戏剧奖”。另外，该剧的导演、水利与土木工程学院大四学生洪敏健与编剧兼主演、来自人文与法学学院的大三学生赖倩仪均获得了“非职业戏剧人”的称号。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;《欢迎光临服务缘西餐厅》是讲述大学生YoYo在餐厅兼职中与家庭、朋友等发生的各种碰撞，在此过程中解开了心中的郁结，寻找到了爱与理解。该剧以轻喜剧的方式向观众传递亲情、友情，以及陪伴的重要性，使观众在捧腹中擦拭眼泪，又在泪痕中放声大笑。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;我校艺术团话剧队以专业的态度给观众们带来了一场精彩的视觉盛宴，获得观众及评委的一致好评。期间，《欢迎光临服务缘西餐厅》还受到了广州话剧艺术中心的邀请，在广州话剧艺术中心的U13剧场进行连续两场对外展演。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;据悉，校艺术团由艺术学院艺术素质中心指导和管理。艺术素质中心自成立以来，积极指导和鼓励在校生参与艺术活动，增加了非艺术类学生参与艺术实践的机会，通过参加各类比赛，以点带面的提升学生的艺术综合素质，并取得较好成绩。（文/图 艺术学院 林翰 朱虹 吴奕渠 ）</p>
+                            (责任编辑：蒙丽）
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;我校民乐团、合唱团分别获广东省大学生器乐、声乐比赛一等奖</h1>
+                            <h3>撰写时间:2016-01-22      来源:艺术学院</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;日前，从广东省教育厅主办的“广东省第二届大学生器乐比赛”“第三届声乐比赛”中传来喜讯，我校学生民乐团民乐重奏荣获一等奖（指导教师林翰）、学生合唱团荣获合唱甲组一等奖（指导老师刘敏）。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;在广东省第二届大学生器乐比赛中，我校学生民乐团在全省数百个参赛节目中脱颖而出进入决赛，并以一首小巧精致，富于生活情趣的广东音乐《鸟投林》获得了评委的一致认可，最终荣获一等奖。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;在广东省第三届声乐比赛中，我校学生合唱团从全省37支高校合唱团队中角逐胜出，荣获合唱甲组一等奖，这也是该合唱团参加此赛事以来连续三届获得一等奖。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;据悉，我校艺术素质中心自成立以来，积极指导和鼓励在校学生参与艺术活动，增加了非艺术类学生参与艺术实践的机会，并以点带面的提升了学生的艺术综合素质，在各类艺术比赛中，均获得了较好的成绩。（文/图 艺术学院 林翰 刘敏 吴奕渠）</p>
+                            (责任编辑：蒙丽）
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;【军训快讯】咸春龙杨运东检查军训工作</h1>
+                            <h3>撰写时间:2016-01-20      来源:学生处</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;2016年1月19日，华南农业大学副校长咸春龙、杨运东在军训师领导陪同下，到泰山区、燕山区、华山区军训场检查工作。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;咸春龙、杨运东一行首先来到东区运动场，恰逢二团正组织各排进行单个队列动作考核。咸春龙对各排训练效果充分肯定，他指出队列动作整齐规范，军训成果初见成效，并对同学们在军训中付出的努力给予高度赞扬。在燕山区运动场，观看了勇夺歌咏比赛一等奖的一团歌咏排合唱表演后，咸春龙、杨运东赞赏了歌咏排队列、动作、合唱相结合的独特表演方式，并与同学们合影留念。在华山运动场上，五团的军体拳展示气势磅礴、动作整齐划一，给咸春龙、杨运东一行留下深刻的印象。校领导十分关心学生军训中的精神生活，专门检查翻阅了各种展示学生军训风采的报刊和宣传栏，从军训师主编的《阳光绿营》、各学院团委学生会制作的绿营报纸了解学生们在军训期间的所思所感。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;检查结束时，咸春龙、杨运东叮嘱军训师领导：希望同学们在最后两天继续保持良好的心态、认真的态度，刻苦钻研军事技能，圆满完成军训任务，交出一份满意答卷。（图/文 学生工作通讯社 郑梓霖、陈冠名、叶磊鹏）</p>
+                            （责任编辑：杨新军）
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;《中国传统农器古今图谱》研讨会在我校召开</h1>
+                            <h3>撰写时间:2016-01-19      来源:人文法学学院</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;近日，由我校农史研究室与广西师范大学出版社集团、中共清远市委宣传部联合主办的《中国传统农器古今图谱》（下简称《图谱》）研讨会在我校召开。来自中山大学、华南师范大学、华南农业大学、广西师范大学、广东农史研究会、清远市文联、清远日报社等单位的专家学者、编辑及著名摄影策展人汇聚一堂，就《图谱》的编纂体例、农器分类、史料引用、文字表达、摄影特色等进行了多学科交叉探讨。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;会上，广西师范大学出版社集团党委书记、副董事长张艺兵，中共清远市常委兼宣传部部长崔建军和我校人文与法学学院院长杨乃良分别致辞。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;《图谱》作者、清远市政协委员潘伟和该图谱责任编辑、广西师范大学出版社罗财勇编辑在会上分别介绍了《图谱》的拍摄、撰写和编辑过程。特别是被誉为“中国农耕文明物证人”的潘伟先生深情地讲述了他历时十余年、走遍大江南北，以及华山东西上百个村庄，蹲守田间地头实景抓拍传统农具的一个个感人故事。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;期间，来自农业史、社会经济史、摄影学、出版学的专家学者分别从《图谱》的编纂体例、农器分类、史料引用、文字表达、摄影特色、编辑风格等方面对潘伟呕心沥血之作进行了多学科研讨。大家一致认为：这是一本有较高学术价值和较大社会影响力的力作。年逾八十的校农史研究室原副主任彭世奖教授评价说，这是继《王桢农书》之后又一部重要的传统农器图谱著作，具有重要的学术价值；广东农史研究会副会长、中山大学博士生导师吴滔教授认为，《图谱》再现了农史学界注重田野调查的方式方法，通过实地拍摄提供了一些过去未著录或以为失传的农器；著名摄影艺术策展人、连州国际摄影年展艺术总监段煜婷女士指出，《图谱》在摄影上已形成自己特有的风格；著名文史学者、广西师范大学出版社集团党委书记张艺兵教授认为《图谱》具有原创性、本土性和学术性三大鲜明特点；中国农史学会副理事长、校农史研究室主任倪根金教授总结说，《图谱》是一部充满农作气息、农民智慧、人文关怀并全面记录传统农器源流的图录著作，具有厚重、独特、科学、鲜活、农本、超越、求实等优点。同时专家们也提出了一些宝贵的意见和建议。（文/图 人文法学学院 唐媚媚、孙迪）</p>
+                            (责任编辑：蒙丽）
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>&nbsp;我校2016年高水平运动队羽毛球项目招生考试顺利进行</h1>
+                            <h3>撰写时间:2016-01-18      来源:招生就业处</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;1月16日，由校招生办公室和体育教学研究部共同组织的我校2016年高水平运动队羽毛球项目招生考试在田家炳综合训练馆举行。副校长咸春龙，招生就业处、体育部、纪委办负责人前往测试现场检查和指导工作，现代教育技术中心、校医院、保卫处等单位安排工作人员协助招生考试工作。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;我校于2010年获教育部批准建设高水平羽毛球运动队，面向全国招生。为全面做好此次高水平运动队的招收测试工作，学校根据《教育部办公厅关于做好2016年普通高等学校部分特殊类型招生工作的通知》（教学厅﹝2015﹞11号）文件精神，按照高校招生实施“阳光工程”的要求，认真部署做好高水平运动员招生考试工作，确保高水平运动员招生考试工作公平、规范、安全、有序。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;今年的考生主要来自广东、湖南、湖北、广西、江西、浙江、贵州、四川、内蒙古、辽宁等省份。按照考务安排，考生1月1日-10日在学校招生办网站进行网上报名，1月15日到体育部进行材料审核，通过材料审核的考生在1月16日进行考试。今年我校高水平运动队羽毛球项目共91个考生在网上报名，实际有68名考生通过材料审核参加考试。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;在测试工作现场，针对我校高水平运动队比较单一的情况，咸春龙副校长指出，学校招生办要与体育部加强沟通合作，力争扩大更多的高水平运动队招生项目，大力推动我校体育工作的全面开展，带动更多学生积极参加阳光体育运动，促进课余体育训练与竞赛的广泛开展和我校运动竞技水平的提高。（文｜图　招生就业处　余明）</p>
+                            （责任编辑：李敏）
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                </article>
+            </div>
+            <div class="related">
+					仅供参赛所用
+				</div>
+		</main>
+		<nav class="cd-nav-container" id="cd-nav">
+			<header>
+				<h2>你想看什么</h2>
+				<a href="#0" class="cd-close-nav">Close</a>
+			</header>
+
+			<ul class="cd-nav">
+				<li data-menu="index">
+					<a href="index.html">
+						<span class="tubiao"><i class="fa fa-fw fa-home"></i></span>
+						<em>首页</em>
+					</a>
+				</li>
+
+				<li data-menu="view">
+					<a href="view.html">
+						<span class="tubiao"><i class="fa fa-fw fa-picture-o"></i></span>
+						<em>走遍华农</em>
+					</a>
+				</li>
+
+				<li class="cd-selected" data-menu="news">
+					<a href="news.html">
+						<span class="tubiao" style="color:#fff;"><i class="fa fa-fw fa-newspaper-o"></i></span>
+						<em>新闻动态</em>
+					</a>
+				</li>
+
+				<li data-menu="student">
+					<a href="student.html">
+						<span class="tubiao"><i class="fa fa-fw fa-group"></i></span>
+						<em>学子风采</em>
+					</a>
+				</li>
+
+				<li data-menu="life">
+					<a href="life.html">
+						<span class="tubiao"><i class="fa fa-fw fa-book"></i></span>
+						<em>校园活动</em>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="cd-overlay"></div>
+		
+	</div>
+            
+	<script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.js"><\/script>')</script>
+	<script>
+        var ZoomGrid = (function() {
+        var w = $(window);
+        var grid = $('.grid');
+        var item = $('.grid__item');
+        var itemContent = item.find('.grid__link');
+        var post = $('.post');
+        var backBtn = post.find('.post__back');
+        var nextBtn = post.find('.post__forw');
+        var breakpoint = 700;
+        var isBig = false;
+    
+        var zoom = function(event) {
+        var content = $(this).find('.grid__link');
+        var self = $(this);
+        var index = self.index();
+        var vw = w.innerWidth();
+        var vh = w.innerHeight();
+        var ds = $(document).scrollTop();
+        var px = event.pageX;
+        var py = event.pageY;
+    
+        var iw = $(this).innerWidth();
+        var ih = $(this).innerHeight();
+        var sx = vw/iw;
+        var sy = vh/ih;
+        
+        var o = $(this).offset();
+        var xc = vw/2;
+        var yc = ds + vh/2;
+        
+        var dsp = ds/ (vh+ds) * 100;
+        
+        tox = px/vw *100;
+        toy = py/vh *100;
+        toy = toy - dsp;
+    
+        if (!isBig && vw >= breakpoint) {
+            grid.css({
+                'transform-origin': tox + '% ' + toy + '%'
+            });
+    
+            setTimeout(function() {
+                requestAnimationFrame(function() {
+                    grid.css({
+                        'transform-origin': tox + '% ' + toy + '%',
+                        'transform': 'scale(' + sx + ',' + sy + ')'
+                    });
+                    itemContent.css({'opacity': '0'});
+                    $('body').css('overflow', 'hidden');
+                    showPost(index);
+                    isBig = true;
+                });
+    
+            }, 50);
+    
+    
+        } else {
+            itemContent.css({
+                'opacity': '0'
+            });
+            showPost(index);
+            isBig = true;
+        }
+        return false;
+        };
+    
+        var zoomout = function() {
+            if (isBig) {
+                post.addClass('post--hide');
+                post.removeClass('post--active');
+                post.on('transitionend', function() {
+                    grid.css({
+                        'transform': 'scale(1)'
+                    });
+                    itemContent.css({'opacity': '1'});
+                    $('body').removeAttr('style');
+                    post.off('transitionend');
+                });
+    
+                isBig = false;
+            }
+            return false;
+        };
+        
+        var showPost = function(index) {
+            post.eq(index).removeClass('post--hide').addClass('post--active');
+        };
+    
+        var nextPost = function() {
+            var cur = $('.post--active');
+            var next = cur.next('.post');
+            if (!next.length) {
+                next = post.first();
+            }
+            cur.addClass('post--hide').removeClass('post--active');
+            next.removeClass('post--hide').addClass('post--active');
+            return false;
+        };
+        
+        var bindActions = function() {
+            item.on('click', zoom);
+            backBtn.on('click', zoomout);
+            nextBtn.on('click', nextPost);
+        };
+        
+        var init = function() {
+            bindActions();
+        };
+        
+        return {
+            init: init
+        };
+    
+    }());
+    
+    ZoomGrid.init();
+    </script>
+        
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>校园活动</title>	
+    <link rel="icon" href="image/tubiao4.ico">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/modernizr.js"></script>
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+    
+    <style>
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 500px;}
+		.htmleaf-header>h1{
+			font-size:50px;}
+		#cd-nav header h2{font-family:'楷体'; font-size:24px; color:rgb(146,168,209);}
+		.zhong{
+			background:#FFF; 
+			width:100%;}
+    	.grid {
+			overflow: auto;
+			will-change: transform, transform-origin;
+			-webkit-transition: -webkit-transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform-origin 0.05s ease;
+			transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), -ms-transform-origin 0.05s ease;
+			transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), transform-origin 0.05s ease;
+		}
+		.grid__item {
+			position: relative;
+			float: left;
+			height: 33.333vh;
+			background: #f7f7f7;
+		}
+		.grid__item:hover .grid__title {
+			color: #ef5350;
+		}
+		.grid__item--4 {
+			width: 33.333%;
+		}
+		@media (max-width: 700px) {
+		  .grid__item {
+		  	width: 100%;
+		  }
+		}
+		.grid__link {
+		  will-change: opacity;
+		  display: -webkit-box;
+		  display: -webkit-flex;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -webkit-flex-flow: column wrap;
+			  -ms-flex-flow: column wrap;
+				  flex-flow: column wrap;
+		  -webkit-box-pack: center;
+		  -webkit-justify-content: center;
+			  -ms-flex-pack: center;
+				  justify-content: center;
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  padding: 1vh 1vw;
+		  -webkit-transition: all 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+		  transition: all 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+		.grid__title {
+		  font-size: 24px;
+		  font-weight: 700;
+		  color: rgba(0, 0, 0, 0.87);
+		  text-transform: capitalize;
+		  line-height: 1.3;
+		}
+		.grid p {
+		  margin-top: 25px;
+		  color: rgba(0, 0, 0, 0.54);
+		  padding-bottom: 10px;
+		  box-shadow: inset 0 -4px #ef5350;
+		}
+		
+		.post {
+		  position: fixed;
+		  z-index: 10;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  overflow-y: auto;
+		  min-height: 100vh;
+		  visibility: hidden;
+		  opacity: 0;
+		  -webkit-transform: scale(0.4);
+			  -ms-transform: scale(0.4);
+				  transform: scale(0.4);
+		  background: #f7f7f7;
+		  -webkit-backface-visibility: hidden;
+				  backface-visibility: hidden;
+		  -webkit-transition: all 0.7s 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+				  transition: all 0.7s 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+		.post--active {
+		  visibility: visible;
+		  opacity: 1;
+		  -webkit-transform: scale(1);
+			  -ms-transform: scale(1);
+				  transform: scale(1);
+		}
+		.post--hide {
+		  -webkit-transition: all 0.6s 0s cubic-bezier(0.23, 1, 0.32, 1);
+				  transition: all 0.6s 0s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+		.post__wrapper {
+		  max-width: 1000px;
+		  margin: 0 auto;
+		  padding: 15vh 5vw;
+		}
+		.post__back, .post__forw {
+		  position: absolute;
+		  top: 3vh;
+		  left: 2vw;
+		  display: -webkit-box;
+		  display: -webkit-flex;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -webkit-box-align: center;
+		  -webkit-align-items: center;
+			  -ms-flex-align: center;
+				  align-items: center;
+		  font-size: 20px;
+		  color: rgba(0, 0, 0, 0.7);
+		  -webkit-transition: color .2s ease-out;
+				  transition: color .2s ease-out;
+		}
+		.post__back > svg, .post__forw > svg {
+		  fill: rgba(0, 0, 0, 0.7);
+		  margin-right: 1vw;
+		}
+		.post__back:hover, .post__forw:hover {
+		  color: #ef5350;
+		}
+		.post__back:hover > svg, .post__forw:hover > svg {
+		  fill: #ef5350;
+		}
+		.post__forw {
+		  left: auto;
+		  right: 2vw;
+		}
+		.post__forw > svg {
+		  margin-right: 0;
+		  margin-left: 1vw;
+		}
+		.post h3 {
+		  font-size:20px;
+		  margin: 0 0 25px 0;
+		  color: rgba(0, 0, 0, 0.7);
+		  text-align:center;
+		}
+		.post p {
+		  font-size: 24px;
+		  line-height:28px;
+		  font-weight: 500;
+		  color: rgba(0, 0, 0, 0.87);
+		  margin: 0 0 25px 0;
+		}
+		.post h1 {
+			text-align:center;
+		  font-size: 36px;
+		  font-weight: 700;
+		  margin: 0 0 25px;
+		}
+		.grid li{height:350px; 
+				background-color:rgba(171,211,234,0.3);
+				padding:8px;
+				border:5px solid #fff;
+				margin:10px auto;
+				-moz-border-radius: 15px; 
+				-webkit-border-radius: 15px; 
+				border-radius:15px;}
+		h2{
+			padding-top:10px;
+			padding-bottom:0;}
+		img{
+			width:450px;
+			display:block;
+			margin:10px auto;}
+		.grid li a img{width:98%; height:80%; margin:0 auto;}
+		.h-2{
+			 text-align:center;
+			 font-size:20px;
+			 line-height:30px;}
+		.more{
+			float:right;
+			font-size:18px;
+			margin:15px;
+			color:#333;}
+		.more:hover{color:#999;}
+		@media (max-width: 1100px) {
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 350px;}
+		.cd-section header{
+			height:350px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-10px;
+			font-size:40px;}
+		.zong{
+			top:-10px;
+			font-size:22px;}
+		.related{
+			font-size:20px;}
+		.fa{
+			font-size:50px;
+			}
+		.cd-nav em{
+			font-size:20px;}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:24px;}
+		.post h1{
+			font-size:30px;}
+		.post p{
+			font-size:22px;}
+		.post__wrapper{
+			max-width:900px;}
+		.grid li{
+			height:300px;}
+		.grid__title{
+			font-size:22px;
+			font-weight:600;}
+		}
+	@media (max-width: 900px) {
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 300px;}
+		.cd-section header{
+			height:300px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:0px;
+			font-size:30px;}
+		.zong{
+			top:0px;
+			font-size:20px;
+			line-height:24px;}
+		.related{
+			font-size:20px;}
+		.fa{
+			font-size:45px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:20px;}
+		.post h1{
+			font-size:24px;}
+		.post p{
+			font-size:18px;}
+		.post__wrapper{
+			max-width:700px;}
+		.grid li{
+			height:250px;}
+		.grid__title{
+			font-size:18px;
+			font-weight:500;}
+		}
+		@media (max-width: 800px) {
+		section>header{
+			background-size:100% 250px;}
+		.cd-section header{
+			height:250px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-40px;
+			font-size:30px;}
+		.zong{
+			top:-60px;
+			font-size:18px;
+			line-height:22px;}
+		.related{
+			font-size:18px;}
+		.fa{
+			font-size:40px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:18px;}
+		.grid li{
+			width:80%;
+			height:300px;
+			position:relative;
+			left:10%;}
+		.post h1{
+			font-size:20px;}
+		.post p{
+			font-size:16px;}
+		.post__wrapper{
+			max-width:600px;}
+		.post__wrapper h3{
+			font-size:10px;}
+		.post__forw,.post__back{
+			font-size:16px;}
+		}
+		@media (max-width: 600px) {
+		section>header{
+			background-size:100% 180px;}
+		.cd-section header{
+			height:180px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-30px;
+			font-size:20px;}
+		.zong{
+			top:-30px;
+			font-size:12px;
+			line-height:14px;}
+		.related{
+			font-size:12px;}
+		.fa{
+			font-size:40px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		.cd-nav em{
+			font-size:18px;
+			font-weight:400;}
+		#cd-nav header h2{
+			font-size:16px;
+			font-weight:400;}
+		.grid li{
+			height:250px;
+			}
+		.grid__title{
+			font-size:16px;
+			font-weight:400;}
+		.post h1{
+			font-size:16px;}
+		.post p{
+			font-size:12px;
+			line-height:18px;
+			font-weight:500;}
+		.post__wrapper{
+			max-width:450px;}
+		.post__wrapper h3{
+			font-size:8px;}
+		.post__forw,.post__back{
+			font-size:14px;}
+		img{
+			width:300px;}
+		}
+		@media (max-width: 450px) {
+		section>header{
+			background-size:100% 150px;}
+		.cd-section header{
+			height:150px;}
+		.zong{
+			top:-50px;
+			font-size:10px;
+			line-height:12px;}
+		.cd-nav em{
+			font-size:16px;}
+		.cd-nav li{
+			height:calc((100vh - 116px)/8);}
+		#cd-nav header h2{
+			font-size:18px;}
+		.post__forw,.post__back{
+			font-size:12px;}
+		}
+    </style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<a href="#cd-nav" class="cd-nav-trigger">
+			Menu<span></span>
+		</a>
+		<main>
+			<section class="cd-section index cd-selected">
+				<header>
+					<div class="cd-title">
+						<header class="htmleaf-header">
+							<h1>欢迎来到华南农业大学<span>Welcome To SCAU</span></h1>
+                            <div class="zong">&nbsp;&nbsp;&nbsp;&nbsp;华南农业大学因其丰富多彩的活动，又被外界称为“华南活动大学”，得天独厚的“五湖四海一片林”美景，加上创意无限激情迸发的学生，使得这里几乎每天都在上演各种大大小小的活动。下面就让我们走进紫荆校园开放日，百团大战，校园歌手大赛等等的活动现场，一探究竟。</div>
+						</header>
+					</div> 
+				</header>
+			</section>
+			<div class="zhong">
+                <article class="htmleaf-container" style="width:85%;">
+                    <ul class="grid">
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                            	<img src="image/life/1.jpg" />
+                                <h2 class="grid__title">&nbsp;紫荆文化节</h2>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                            	<img src="image/life/17.jpg" />
+                                <h2 class="grid__title">&nbsp;美食文化节</h2>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                            	<img src="image/life/36.jpg" />
+                                <h2 class="grid__title">&nbsp;宠物嘉年华</h2>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                            	<img src="image/life/49.jpg" />
+                                <h2 class="grid__title">&nbsp;迎新晚会</h2>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                            	<img src="image/life/65.jpg" />
+                                <h2 class="grid__title">&nbsp;“百团大战”</h2>
+                            </a>
+                        </li>
+                        <li class="grid__item grid__item--4">
+                            <a href="" class="grid__link">
+                            	<img src="image/life/78.jpg" />
+                                <h2 class="grid__title">&nbsp;校园歌手大赛</h2>
+                            </a>
+                        </li>
+                        <a href="http://a.huanongbao.com/" class="more">更多...</a>
+                    </ul>
+            
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>三月赏紫荆</h1>
+                            <h3>举办时间：3月紫荆花盛开之时</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;话说北有武大樱花，南有华农紫荆。在华农校园里，三月是紫荆花的时代，独领风骚。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;每年三月开始到华农赏紫荆的游人络绎不绝，在紫荆开放日当天人流量更能达到超十万。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;为了打造“五湖四海一片林”的校园风貌，华农在全校范围有规划地种植不同品种的紫荆花，目前数量已超过5000株。“紫荆校园”已成为华农的一张文化名片。淡粉的，绯红的，嫩白的，娇滴滴的紫荆花开展了枝头，挂满了树丫，美得一塌糊涂。若是遇上春雨，花瓣随之飘落，可想象，落花缀小径，此情此景，若世外桃源，似人间仙境。要是再邀上几位好友，得意，得意。</p>
+                            <img src="image/life/2.jpg" />
+                            <h3>阳春三月，姹紫嫣红</h3>
+                            <br />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;如同日本樱花般盛放的羊蹄甲，一簇簇花朵紧紧相拥，在春日里燃烧起如火如荼的激情。</p>
+                            <img src="image/life/3.jpg" />
+                            <img src="image/life/4.jpg" />
+                            <img src="image/life/5.jpg" />
+                            <img src="image/life/6.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;2012年初，130棵樱花“落户”华农湿地公园。因为此樱花是由广州本土一公司研发的新品种，故命名为“中国红”，比日本樱花多了一分鲜艳。原来华农能一次满足两个愿望：羊蹄甲+樱花！</p>
+                            <img src="image/life/7.jpg" />
+                            <img src="image/life/8.jpg" />
+                            <img src="image/life/9.jpg" />
+                            <img src="image/life/10.jpg" />
+                            <br />
+                            <h2 class="h-2">除了紫荆花，华南农业大学还有各种各样的美花噢~</h2>
+                            <img src="image/life/11.jpg" />
+                            <h3>黄花风铃木</h3>
+                            <br />
+                            <img src="image/life/12.jpg" />
+                            <h3>簕杜鹃</h3>
+                            <br />
+                            <img src="image/life/13.jpg" />
+                            <h3>鸡冠刺桐</h3>
+                            <br />
+                            <img src="image/life/14.jpg" />
+                            <h3>鸳鸯茉莉</h3>
+                             <br />
+                            <img src="image/life/15.jpg" />
+                            <h3>山茶花</h3>
+                            <br />
+                            <img src="image/life/16.jpg" />
+                            <h3>锦绣杜鹃</h3>
+                            <br />
+                            <br />
+                            <h1>赏花需适时，三月赏花走起！</h1>
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            美食文化节<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>美食文化节</h1>
+                            <h3>举办时间：3月中旬</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;每年三月的华农不仅被紫荆花点缀,更是被一大波来自广州各地的吃货们包围。景色优美,热闹非凡,当天的华农实在是吃喝玩乐的好地方。</p>
+                            <img src="image/life/18.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;华农美食节至今已举办15届。2015年美食节确定124个摊位入围。其中外国友人摊位4个，外校摊位6个，本校摊位114个。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;美食节现场，除了大量的销售摊位供大家购买各式美食外，现场还有游园、抽奖等摊位以及美食节大舞台。</p>
+                            <img src="image/life/19.jpg" />
+                            <h3>美食节盛况</h3>
+                            <br />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;销售区摊位分为五大区域，它们的命名为：
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;流觞曲水：羽觞伴波流，逸兴随心发
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;世外桃源：忽逢桃源，烦恼尽抛脑后
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;琼楼玉宇：恐琼楼玉宇，高处不胜寒
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小桥流水：水声潺潺，流淌无尽乡愁
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;灯火阑珊：蓦然回首，灯火阑珊谁人候                      
+                            </p>
+                            <img src="image/life/20.jpg" />
+                            <img src="image/life/21.jpg" />
+                            <img src="image/life/22.jpg" />
+                            <img src="image/life/23.jpg" />
+                            <img src="image/life/24.jpg" />
+                            <img src="image/life/25.jpg" />
+                            <br />
+                            <h2 class="h-2">再来一起回顾2014年的华农美食节吧：</h2>
+                            <br />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;在2014年的美食节中，华农美食节共设了58个摊位，分为健康蒸煮、地方美食、创意美食、情迷烧烤、风味饮品、异域风情等七个部分。</p>
+                            <img src="image/life/26.jpg" />
+                            <img src="image/life/27.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;各个摊位精心布置，风格迥异而极具创意。摊位名称 “食字路口”“密语攻心”“御膳房”“海派甜心”“比翼双飞” 新颖别致。</p>
+                            <img src="image/life/28.jpg" />
+                            <img src="image/life/29.jpg" />
+                            <img src="image/life/30.jpg" />
+                            <img src="image/life/31.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;烹调手法蒸炸煮炖乃至凉拌样样齐全；口味囊括本土的广州到客家、潮汕、吴川甚至远至巴基斯坦。</p>
+                            <img src="image/life/32.jpg" />
+                            <p>还有华农萌萌的软妹子！</p>
+                            <img src="image/life/33.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;独特的口味，丰富的品种，绚丽的卖相，一整天销售区内始终人气鼎盛，可谓“民以食为天”的真实写照。</p>
+                            <img src="image/life/34.jpg" />
+                            <br />
+                            <h1>看了这么多，今年的美食节，你准备好了吗？</h1>
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            宠物嘉年华<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>宠物嘉年华</h1>
+                            <h3>举办时间：4月中旬</h3>
+                            <p style=" text-align:center;">春光灿烂看狗狗，话不多说，先上一波图~~~~</p>
+                            <img src="image/life/37.jpg" />
+                            <img src="image/life/38.jpg" />
+                            <img src="image/life/39.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;嗯好了，小编知道大家已经被萌一脸血了~~~
+<br />&nbsp;&nbsp;&nbsp;&nbsp;时光飞逝，转眼间华南农业大学宠物嘉年华已经陪伴华南地区的广大宠物主和爱宠们走过了十多年的时光(～￣▽￣)ノ╰(￣ω￣ｏ) ~~<br />&nbsp;&nbsp;&nbsp;&nbsp;在2014年华农宠物节十周年的时候，华南农业大学举行“百年华农梦，十载宠物缘”华南(广州)第十届宠物嘉年华活动，该活动作为第三届紫荆校园开放日暨第二十五届紫荆科技文化节的重头戏，吸引了珠三角地区近1000只名贵犬来参展和表演才技。</p>
+							<img src="image/life/40.jpg" />
+                            <img src="image/life/41.jpg" />
+                            <img src="image/life/42.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;围绕着嘉年华活动，共划分了十年回顾展区、义诊区、游戏表演区、开闭幕式主舞台区和商家展示区等多个展区，意在通过利用宠物嘉年这一平台，构建出一个人宠和谐相处的环境。</p>
+                            <img src="image/life/43.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2015，站在后十周年的这一时间节点上，我们又举办了“宠Ta”——第十一届华南农业大学宠物嘉年华系列活动。(*￣▽￣)y&nbsp;&nbsp;新的十年，我们将打造不一样的宠物娱乐文化；新的十年，我们将感受不一样的人宠和谐理念；新的十年，我们将见证华南宠物的又一个盛典。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宠Ta，就给Ta最好的生活；宠Ta，就给Ta最多的关爱；宠Ta，就带Ta来宠物嘉年华。这里有最有趣的狗狗游戏，这里有最萌最可爱的狗狗美容，这里有丰富超值的奖品，这里专业高素质的义诊团队，这里或许还可以为你的宠物找到它的另一半。</p>
+                            <h1>新的十年，再续前缘，约定华农！我们依然在一起!</h1>
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            迎新晚会<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>迎新晚会</h1>
+                            <h3>举办时间：9月底</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;百年华农，养育了一代又一代的华农人。每年九月，华农都以最热情的姿态欢迎来自五湖四海的新生。接下来让我们回顾2015年华农迎新晚会上的精彩瞬间！</p>
+                          	<h2 class="h-2">2015年  珍惜和平 畅享青春（Cherish peace & Enjoy the youth）</h2>
+                            <br />
+                            <img src="image/life/50.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;2015级迎新晚会在2015年9月29号晚于泰山区东区运动场举行，整个晚会都冲击着我们的视觉与听觉！ 远射灯不断移动，人潮夹杂着音乐声，各种欢呼声在此刻沸腾！</p>
+                            <img src="image/life/51.jpg" />
+                            <h3>【中国龙】铿锵鼓舞 激情迸发</h3>
+                            <img src="image/life/52.jpg" />
+                            <h3>【出击】校艺术团啦啦队，热情开舞</h3>
+                            <img src="image/life/53.jpg" />
+                            <h3>【Just Tonight我的天空】校园天籁，震撼全场</h3>
+                            <img src="image/life/54.jpg" />
+                            <h3>【雀之恋】柔而有力 温婉细腻</h3>
+                            <img src="image/life/55.jpg" />
+                            <h3>【精武中华】以武强国 以德传承</h3>
+                            <img src="image/life/56.jpg" />
+                            <h3>【魅力四射】迈开舞步 挥洒青春热情</h3>
+                            <img src="image/life/57.jpg" />
+                            <h3>【丰碑】讲述那段红色岁月 那段革命青春</h3>
+                            <img src="image/life/59.jpg" />
+                            <h3>【让我们舞起来】专业美声 声声送情</h3>
+                            <img src="image/life/60.jpg" />
+                            <h3>【热火青春】热情舞步 点燃青春</h3>
+                            <img src="image/life/61.jpg" />
+                            <h3>【历史并不如烟】以史为鉴，不是为了延续仇恨，而是更好的开创未来。</h3>
+                            <img src="image/life/62.jpg" />
+                            <img src="image/life/63.jpg" />
+                            <h3>【雅韵中国】传承文化 传递雅韵</h3>
+                            <img src="image/life/64.jpg" />
+                            <h3>【黄河大合唱】气势磅礴 如历史长河翻滚而来 </h3>
+                            <h1>每年华农都以精彩的晚会迎接新生，今年，你准备好了么？</h1>
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            下一则<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>百团大战</h1>
+                            <h3>举办时间：9月中旬</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;下课时的饭堂最拥挤？开学日的师兄师姐最热情？新生周的活动最热闹？不，图样图森破，带你看图见识只“为你而战”的社团招新之“百团大战”！</p>
+                            <img src="image/life/66.jpg" />
+                            <h2 class="h-2">先来看几张高大上航拍。</h2>
+                            <img src="image/life/67.jpg" />
+                            <img src="image/life/68.jpg" />
+                            <img src="image/life/69.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;“百团”，顾名思义，华农有接近一百个社团，短短的一天时间，近一百个社团与各大校级组织在烈日下抢夺近万的新鲜出炉小鲜肉。</p>
+                            <img src="image/life/70.jpg" />
+                            <img src="image/life/71.jpg" />
+                            <img src="image/life/72.jpg" />
+                            <img src="image/life/73.jpg" />
+                            <img src="image/life/74.jpg" />
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;高大上的校级组织总是无限度的吸引小鲜肉的眼球，拥挤的咨询摊位、火爆的面试现场……</p>
+                            <img src="image/life/75.jpg" />
+                            <img src="image/life/76.jpg" />
+                            <img src="image/life/77.jpg" />
+                            <h1>最后，希望每位小鲜肉都可以成功进入自己想加入的社团组织好好锻炼自己。</h1>
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            校园歌手大赛<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                    <section class="post">
+                        <article class="post__wrapper">
+                            <h1>校园歌手大赛</h1>
+                            <h3>举办时间：11月~12月</h3>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;历年来，为进一步发挥校园文化的育人塑人功能，展现学生积极向上、奋斗成才的精神风貌，各学院以及学校举办过多届十大歌手大赛，2014年，我校不仅举办了“我要上迎新”系列之十大歌手大赛，还举办了广东省的校园十大歌手大赛。而在2015年，又成功举办了华南农业大学第一届魅族手机“理想国”歌手大赛。</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;12月13日晚，由共青团华南农业大学委员会，华南农业大学文化艺术素质中心主办，华南农业大学学生会承办的华南农业大学第一届魅族手机“理想国”歌手大赛总决赛在华山学生活动中心举行。</p>
+                            <img src="image/life/79.jpg" />
+                            <h2 class="h-2">激情唱响，触摸梦想</h2>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;大赛在十强歌手活力四射的合唱中拉开了序幕。比赛共邀请了包括新生代唱作歌手钟明秋和广州晨星艺术声乐教师等五位专业评审对选手进行打分。赛制共分为初恋理想、换位挑战以及荣耀加冕三轮。选手面临自选曲目，一分钟清唱等新颖的比赛形式，竞争激烈。</p>
+                            <img src="image/life/80.jpg" />
+                            <h3>选手风采</h3>
+                            <img src="image/life/81.jpg" />
+                            <h3>选手风采</h3>
+                            <h2 class="h-2">梦想继续，脚步不止</h2>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;经过角逐，魔音组合Little pepper凭借稳定的发挥一举夺魁，嵇祥如意和罗柏圣同学分别获得亚军和季军，最美和声——Sunset组合获得最佳人气奖，谢钰佳同学获得最佳演绎奖。青年唱作歌手钟明秋表示，华农的学子唱功不错但是过于紧张，希望华农学子能够不断努力，提升自己。</p>
+                            <img src="image/life/82.jpg" />
+                            <h3>评委点评</h3>
+                            <h2 class="h-2">专业筑梦，成就梦想</h2>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;决赛之前，华南农业大学学生会集合多方力量针对选手的唱功、外形、定位等进行全方面的协助与提升，为十组选手准备了提升计划，其中包括声乐课堂、单曲录制以及平面拍摄。</p>
+                            <img src="image/life/83.jpg" />
+                            <img src="image/life/84.jpg" />
+                            <img src="image/life/85.jpg" />
+                            <P>&nbsp;&nbsp;&nbsp;&nbsp;经过专业的培训，各位选手对于舞台么掌控力都有了提升，每位选手出场前都有专属他们的精美VCR，制作精良，让人耳目一新。</P>
+                            <h1>校园歌手大赛，只为给你呈现一场更棒的视听盛宴</h1>
+                        </article>
+                        <a href="" class="post__back">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 11h5v-6h-5v6zm0 7h5v-6h-5v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5v-6h-5v6zm6-6v6h5v-6h-5z"/><path d="M0 0h24v24h-24z" fill="none"/>
+                    </svg> 返回
+                        </a>
+                        <a href="" class="post__forw">
+                            紫荆文化节<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z" fill="none"/><path d="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z"/></svg> 
+                        </a>
+                    </section>
+                </article>
+            </div>
+				<div class="related">
+					仅供参赛所用
+				</div>
+		</main>
+		<nav class="cd-nav-container" id="cd-nav">
+			<header>
+				<h2>你想看什么</h2>
+				<a href="#0" class="cd-close-nav">Close</a>
+			</header>
+
+			<ul class="cd-nav">
+				<li data-menu="index">
+					<a href="index.html">
+						<span class="tubiao"><i class="fa fa-fw fa-home"></i></span>
+						<em>首页</em>
+					</a>
+				</li>
+
+				<li data-menu="view">
+					<a href="view.html">
+						<span class="tubiao"><i class="fa fa-fw fa-picture-o"></i></span>
+						<em>走遍华农</em>
+					</a>
+				</li>
+
+				<li data-menu="news">
+					<a href="news.html">
+						<span class="tubiao"><i class="fa fa-fw fa-newspaper-o"></i></span>
+						<em>新闻动态</em>
+					</a>
+				</li>
+
+				<li data-menu="student">
+					<a href="student.html">
+						<span class="tubiao"><i class="fa fa-fw fa-group"></i></span>
+						<em>学子风采</em>
+					</a>
+				</li>
+
+				<li class="cd-selected" data-menu="life">
+					<a href="life.html">
+						<span class="tubiao" style="color:#fff;"><i class="fa fa-fw fa-book"></i></span>
+						<em>校园活动</em>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="cd-overlay"></div>
+		
+	</div>
+    
+    <script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.js"><\/script>')</script>
+	<script>
+        var ZoomGrid = (function() {
+        var w = $(window);
+        var grid = $('.grid');
+        var item = $('.grid__item');
+        var itemContent = item.find('.grid__link');
+        var post = $('.post');
+        var backBtn = post.find('.post__back');
+        var nextBtn = post.find('.post__forw');
+        var breakpoint = 700;
+        var isBig = false;
+    
+        var zoom = function(event) {
+        var content = $(this).find('.grid__link');
+        var self = $(this);
+        var index = self.index();
+        var vw = w.innerWidth();
+        var vh = w.innerHeight();
+        var ds = $(document).scrollTop();
+        var px = event.pageX;
+        var py = event.pageY;
+    
+        // scale stuff
+        var iw = $(this).innerWidth();
+        var ih = $(this).innerHeight();
+        var sx = vw/iw;
+        var sy = vh/ih;
+        
+        // transform-origin stuff
+        var o = $(this).offset();
+        var xc = vw/2;
+        var yc = ds + vh/2;
+        
+        var dsp = ds/ (vh+ds) * 100;
+        
+        tox = px/vw *100;
+        toy = py/vh *100;
+        toy = toy - dsp;
+    
+        if (!isBig && vw >= breakpoint) {
+            grid.css({
+                'transform-origin': tox + '% ' + toy + '%'
+            });
+    
+            setTimeout(function() {
+                requestAnimationFrame(function() {
+                    grid.css({
+                        'transform-origin': tox + '% ' + toy + '%',
+                        'transform': 'scale(' + sx + ',' + sy + ')'
+                    });
+                    itemContent.css({'opacity': '0'});
+                    $('body').css('overflow', 'hidden');
+                    showPost(index);
+                    isBig = true;
+                });
+    
+            }, 50);
+    
+    
+        } else {
+            itemContent.css({
+                'opacity': '0'
+            });
+            showPost(index);
+            isBig = true;
+        }
+        return false;
+        };
+    
+        var zoomout = function() {
+            if (isBig) {
+                post.addClass('post--hide');
+                post.removeClass('post--active');
+                post.on('transitionend', function() {
+                    grid.css({
+                        'transform': 'scale(1)'
+                    });
+                    itemContent.css({'opacity': '1'});
+                    $('body').removeAttr('style');
+                    post.off('transitionend');
+                });
+    
+                isBig = false;
+            }
+            return false;
+        };
+        
+        var showPost = function(index) {
+            post.eq(index).removeClass('post--hide').addClass('post--active');
+        };
+    
+        var nextPost = function() {
+            var cur = $('.post--active');
+            var next = cur.next('.post');
+            if (!next.length) {
+                next = post.first();
+            }
+            cur.addClass('post--hide').removeClass('post--active');
+            next.removeClass('post--hide').addClass('post--active');
+            return false;
+        };
+        
+        var bindActions = function() {
+            item.on('click', zoom);
+            backBtn.on('click', zoomout);
+            nextBtn.on('click', nextPost);
+        };
+        
+        var init = function() {
+            bindActions();
+        };
+        
+        return {
+            init: init
+        };
+    
+    }());
+    
+    ZoomGrid.init();
+    </script>
+	
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

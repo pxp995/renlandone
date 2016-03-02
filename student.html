@@ -1,0 +1,571 @@
+﻿<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>学子风采</title>	
+    <link rel="icon" href="image/tubiao3.ico">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/reset.css"> 
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="css/style.css"> 
+    
+    <link href='http://fonts.useso.com/css?family=Raleway:400,300,200,500,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="dist/material-cards.css">
+    
+	<script src="js/modernizr.js"></script> 
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+    
+  	<style type="text/css">
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 500px;}
+		.htmleaf-header>h1{
+			font-size:50px;}
+		#cd-nav header h2{font-family:'楷体'; font-size:24px; color:rgb(146,168,209);}
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            background-color: #ECEFF1;
+            color: #37474F;
+            font-family: "楷体";
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 200;
+        }
+		.tubiao i{
+			font-size:70px;
+			color:rgb(146,168,209);}
+		a:hover i{
+			color:#fff;
+			}
+		.mc-content{
+			height:410px;}
+		.zong{top:30px;}
+		@media (max-width: 1200px) {
+			.mc-content{
+				height:300px;}
+		}
+		@media (max-width: 1100px) {
+			section>header{
+				background:url(image/1.jpg) no-repeat;
+				background-size:100% 350px;}
+			.cd-section header{
+				height:350px;}
+			.htmleaf-header>h1{
+				position:relative;
+				top:-10px;
+				font-size:40px;}
+			.zong{
+				top:-10px;
+				font-size:22px;}
+			.related{
+				font-size:20px;}
+			.cd-nav em{
+				font-size:20px;}
+			.tubiao i{
+				font-size:50px;
+				left:0px;
+				top:18px;}
+			#cd-nav header h2{
+				font-size:24px;}
+		}
+		@media (max-width: 1000px) {
+			.mc-content{
+				height:400px;}
+		}
+		@media (max-width: 900px) {
+			section>header{
+				background:url(image/1.jpg) no-repeat;
+				background-size:100% 300px;}
+			.cd-section header{
+				height:300px;}
+			.htmleaf-header>h1{
+				position:relative;
+				top:0px;
+				font-size:30px;}
+			.zong{
+				top:0px;
+				font-size:20px;}
+			.related{
+				font-size:20px;}
+			.tubiao i{
+				font-size:45px;
+				left:0px;
+				top:18px;}
+			#cd-nav header h2{
+				font-size:20px;}
+			.row{
+				width:100%;
+				margin:0 auto;}
+			.mc-content{
+				height:380px;}
+			.material-card.mc-active .mc-description{
+				top:40px;}
+			.mc-description{
+				font-size:14px;}
+		}
+		@media (max-width: 800px) {
+			section>header{
+				background-size:100% 250px;}
+			.cd-section header{
+				height:250px;}
+			.htmleaf-header>h1{
+				position:relative;
+				top:-40px;
+				font-size:30px;}
+			.zong{
+				top:-60px;
+				font-size:18px;
+				line-height:22px;}
+			.related{
+				font-size:18px;}
+			.tubiao i{
+				font-size:40px;
+				left:0px;
+				top:18px;}
+			#cd-nav header h2{
+				font-size:18px;}
+		}
+		@media (max-width: 767px) {
+			.row{
+				width:60%;
+				}
+			.material-card.mc-active .mc-description{
+				top:-10px;}
+			.img-responsive{
+				width:100%;}
+			}
+		@media (max-width: 650px) {
+			.mc-content{
+				height:350px;}
+			.material-card.mc-active .mc-description{
+				top:-20px;}
+			.mc-description{
+				font-size:13px;}
+			}
+		@media (max-width: 600px) {
+			section>header{
+				background-size:100% 180px;}
+			.cd-section header{
+				height:180px;}
+			.htmleaf-header>h1{
+				position:relative;
+				top:-30px;
+				font-size:20px;}
+			.zong{
+				top:-30px;
+				font-size:12px;
+				line-height:14px;}
+			.related{
+				font-size:12px;}
+			.tubiao i{
+				left:0px;
+				top:18px;}
+			.cd-nav em{
+				font-size:14px;
+				font-weight:400;}
+			#cd-nav header h2{
+				font-size:16px;
+				font-weight:400;}
+			.material-card h2 span{
+				font-size:0.9em;}
+			.material-card h2 strong{
+				font-size:0.6em}
+			.mc-content{
+				height:320px;}
+			.mc-description{
+				font-size:10px;
+				line-height:12px;}
+		}
+		@media (max-width: 580px) {
+			.mc-content{
+				height:300px;}
+				}
+		@media (max-width: 550px) {
+			.mc-content{
+				height:260px;}
+			.mc-description{
+				font-size:8px;
+				line-height:10px;}
+			.material-card h2 span{
+				font-size:0.8em;}
+			.material-card h2 strong{
+				font-size:10px;
+				line-height:12px;}
+			.material-card .mc-btn-action{
+				top:5px;
+				right:5px;
+				width:30px;
+				height:30px;
+				border: 2px solid;
+				line-height:28px;}
+			.material-card.mc-active .mc-description{
+				top:-50px;}
+				}
+		@media (max-width: 500px) {
+			.row{
+				width:80%;
+				}
+			.mc-content{
+				height:280px;}
+			
+			}
+		@media (max-width: 450px) {
+			section>header{
+				background-size:100% 150px;}
+			.cd-section header{
+				height:150px;}
+			.zong{
+				top:-50px;
+				font-size:10px;
+				line-height:12px;}
+			.row{
+				width:90%;
+				}
+			.cd-nav em{
+				font-size:16px;}
+			.cd-nav li{
+				height:calc((100vh - 116px)/8);}
+			#cd-nav header h2{
+				font-size:18px;}
+			.mc-content{
+				height:265px;}
+		}
+    </style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<a href="#cd-nav" class="cd-nav-trigger">
+			Menu<span></span>
+		</a>
+		<main>
+			<section class="cd-section index cd-selected">
+				<header>
+					<div class="cd-title">
+						<header class="htmleaf-header">
+							<h1>欢迎来到华南农业大学<span>Welcome To SCAU</span></h1>
+                            <div class="zong">&nbsp;&nbsp;&nbsp;&nbsp;大学阶段是人生弥足珍贵的四年青春岁月。他们怀揣梦想来到华农，在丁颖精神的激励下，不曾放弃追逐梦想。如今，他们成为了华农学子的榜样。他们各有不一样的故事，不一样的精彩人生。</div>
+						</header>
+					</div>
+				</header>
+
+				<div class="cd-content">
+                	<section class="container">
+		    <div class="page-header">
+		        
+		    </div>
+		    <div class="row active-with-click">
+		        <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Deep-Purple">
+		                <h2>
+		                    <span>李世颖</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        林学与风景园林学院
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/1.jpg">
+		                    </div>
+		                    <div class="mc-description">
+		                        &nbsp;&nbsp;&nbsp;&nbsp;平均绩点和综测排名三年第一，初试和复试第一保研本校风景园林系。获国家奖学金、丁颖奖学金、一等奖奖学金2次和中山四海优秀学生干部奖学金；被授予校级三好学生标兵3次、校级优秀学生干部2次、校优秀共青团员；获亚洲设计学年风景园林最佳设计银奖；校普邦杯设计比赛二等和三等奖；校宿舍架空层规划大赛三等奖；参与《岭南风格的越秀区城市特色研究》和《越秀区古建修复检索图则》课题，研究成果已通过越秀区领导和广州市市长审批。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		               
+		            </article>
+		        </div>
+		        <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Indigo">
+		                <h2>
+		                    <span>黄文君</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        人文与法学学院
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/2.jpg">
+		                    </div>
+		                    <div class="mc-description">
+		                       &nbsp;&nbsp;&nbsp;&nbsp;曾获得“丁颖”奖学金1次，国家奖学金1次，一等奖学金1次，二等奖学金1次，“三好学生标兵”2次，“三好学生”1次。大二曾公派赴台湾交换学习一学期。三年绩点名列前茅，2014-2015学年绩点位列年级第一，并以综合第一的成绩保研至华南理工大学攻读硕士学位。曾在国家级及省级学术期刊上发表论文多篇，带领团队“筹梦众筹平台”入驻华南农业大学大学生创业孵化基地。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		                
+		            </article>
+		        </div>
+		        <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Blue">
+		                <h2>
+		                    <span>庄佳龙</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        艺术学院
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/7.jpg">
+		                    </div>
+		                    <div class="mc-description">
+		                        &nbsp;&nbsp;&nbsp;&nbsp;中国新锐青年导演代表。2009年，庄佳龙所拍摄的DV短片获得了广州市第六届大学生电影节“最佳短片奖”。2010年，作品《台北，收信人不详》又斩获第十七届北京大学生电影节剧情短片最佳导演奖。2013年，凭借自己执导的微电影《玛丽的自然卷世界》入选2013戛纳电影节，成为走上戛纳电影节的优秀青年校友。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		               
+		            </article>
+		        </div>
+		        <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Light-Blue">
+		                <h2>
+		                    <span>尹然平</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        经济与管理学院
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/4.jpg">
+		                    </div>
+		                    <div class="mc-description">
+		                         &nbsp;&nbsp;&nbsp;&nbsp;曾任07团总支学生会主席,校学生会主席,省学联副主席。广州迅睿网络科技有限公司企业法人代表。广州迅睿团队于2013年2月份注册，是校团委重点打造的创业团队，他们致力于构建农村微循环可溯源电子商务链，打造高校、政府、企业及农民的3+1模式，带着农民创业致富。2014年“创青春.挑战杯”全国大学生创业大赛金奖。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		               
+		            </article>
+		        </div>
+		        <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Cyan">
+		                <h2>
+		                    <span>张子兴(右)</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        信息学院
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/5.jpg" style="width:100%;">
+		                    </div>
+		                    <div class="mc-description">
+		                        华农ACM队退役队员。现就职于美国Facebook公司。2014年第38届ACM-ICPC世界总决赛期间，张子兴先生专程从美国加州硅谷赶到叶卡捷琳堡与华农队员会合，给队员进行专项训练和竞赛指导，体现出巨大的工作激情与对学校的深厚情怀。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		               
+		            </article>
+		        </div>
+		        <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Teal">
+		                <h2>
+		                    <span>廖永泰</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        华南农学院蚕桑专业
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/6.jpg" style="width:100%;">
+		                    </div>
+		                    <div class="mc-description">
+		                        1988年任助理研究员，1993年任副研究员，1998年开始任研究员。1992年12月~1996年3月任蚕业研究所副所长，主管技术开发。1996年4月~1996年12月任广东省田园实业发展有限公司副总经理兼任广东科宇工厂化农业投资公司总经理。1997年1月起任蚕业研究所所长，2000年10月至今任广东省农业科学院副院长、党组成员，第六届广东省丁颖科技奖。中国科协第六次全国代表大会代表。现任广东省农科院党委书记，院一级学科带头人
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		               
+		            </article>
+		        </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Green">
+		                <h2>
+		                    <span>章野(左一)</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        资源与环境学院
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/3.jpg" style="height:100%;">
+		                    </div>
+		                    <div class="mc-description">
+		                        &nbsp;&nbsp;&nbsp;&nbsp;每憬添团队创始人。该团队在2012年第八届“挑战杯”创业计划竞赛中脱颖而出获得银奖，随后落地运营至今立，是我校两年来第一个注册的在校生企业。专注于城市屋顶绿化项目，目前已经承接学校竹园宾馆、广州中石化大楼以及梅州市屋顶拆迁改造部分工程项目，在梅州创业大赛，盐商杯等创业大赛中频频获奖。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		            </article>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Light-Green">
+		                <h2>
+		                    <span>林洪宣(右)</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        作物遗传育种专业学士
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/9.jpg">
+		                    </div>
+		                    <div class="mc-description">
+		                       &nbsp;&nbsp;&nbsp;&nbsp;2009年11月当选中国科学院院士。1997年8月-2001年2月在日本国立农业生物资源研究所水稻基因组计划项目（RGP）做博士后研究。2001年2月入选中国科学院“百人计划” 应聘回国工作。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		               
+		            </article>
+		        </div>
+		        <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Lime">
+		                <h2>
+		                    <span>林继耕(左)</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        农经系学士
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="image/student/8.jpg">
+		                    </div>
+		                    <div class="mc-description">
+		                       &nbsp;&nbsp;&nbsp;&nbsp;美国亚利桑那大学经济学博士，长期从事金融风险管理的研究。现任美国富国银行资深副总裁，曾在美国运通、摩根大通、美国安泰银行等公司任职。
+		                    </div>
+		                </div>
+		                <a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>
+		                
+		            </article>
+		        </div>
+                    
+		    </div>
+		</section>
+				</div>
+				<div class="related">
+					仅供参赛所用
+				</div>
+			</section>
+
+		</main>
+		<nav class="cd-nav-container" id="cd-nav">
+			<header>
+				<h2>你想看什么</h2>
+				<a href="#0" class="cd-close-nav">Close</a>
+			</header>
+
+			<ul class="cd-nav">
+				<li data-menu="index">
+					<a href="index.html">
+						<span class="tubiao"><i class="fa fa-fw fa-home"></i></span>
+						<em>首页</em>
+					</a>
+				</li>
+
+				<li data-menu="view">
+					<a href="view.html">
+						<span class="tubiao"><i class="fa fa-fw fa-picture-o"></i></span>
+						<em>走遍华农</em>
+					</a>
+				</li>
+
+				<li data-menu="news">
+					<a href="news.html">
+						<span class="tubiao"><i class="fa fa-fw fa-newspaper-o"></i></span>
+						<em>新闻动态</em>
+					</a>
+				</li>
+
+				<li class="cd-selected" data-menu="student">
+					<a href="student.html">
+						<span class="tubiao"><i class="fa fa-fw fa-group" style="color:#fff;"></i></span>
+						<em>学子风采</em>
+					</a>
+				</li>
+
+				<li data-menu="life">
+					<a href="life.html">
+						<span class="tubiao"><i class="fa fa-fw fa-book"></i></span>
+						<em>校园活动</em>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="cd-overlay"></div>
+		
+	</div>
+    
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/main.js"></script>
+    
+    <script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
+	<script>
+    $(function() {
+        $('.material-card > .mc-btn-action').click(function () {
+            var card = $(this).parent('.material-card');
+            var icon = $(this).children('i');
+            icon.addClass('fa-spin-fast');
+
+            if (card.hasClass('mc-active')) {
+                card.removeClass('mc-active');
+
+                window.setTimeout(function() {
+                    icon
+                        .removeClass('fa-arrow-left')
+                        .removeClass('fa-spin-fast')
+                        .addClass('fa-bars');
+
+                }, 800);
+            } else {
+                card.addClass('mc-active');
+
+                window.setTimeout(function() {
+                    icon
+                        .removeClass('fa-bars')
+                        .removeClass('fa-spin-fast')
+                        .addClass('fa-arrow-left');
+
+                }, 800);
+            }
+        });
+		});
+	</script>
+</body>
+</html>

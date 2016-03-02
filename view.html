@@ -1,0 +1,401 @@
+﻿<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>走遍华农</title>	
+    <link rel="icon" href="image/tubiao1.ico">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/modernizr.js"></script>
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+	<style>
+	section>header{
+		background:url(image/1.jpg) no-repeat;
+		background-size:100% 500px;}
+	.htmleaf-header>h1{
+		font-size:50px;}
+	#cd-nav header h2{font-family:'楷体'; font-size:24px; color:rgb(146,168,209);}
+    .img{
+        padding:20px;
+        width:80%;
+        background-color:rgba(171,211,234,0.3);
+        border:2px solid #fff;
+        margin:20px auto;
+		-moz-box-shadow:5px 2px 6px #888888;
+		-webkit-box-shadow:5px 2px 6px #888888;
+		box-shadow:5px 2px 6px #888888;
+        -moz-border-radius: 15px; 
+        -webkit-border-radius: 15px; 
+        border-radius:15px;}
+    img{
+        width:35%;
+        height:250px;
+        padding-right:25px;
+        display:block;
+        float:left;
+        cursor:pointer;
+        transition:0.5s ease-out;
+        -ms-transition:0.5s ease;
+        -moz-transition:0.5s ease;
+        -webkit-transition:0.5s ease;
+        -o-transition:0.5s ease;
+    }
+    h3{
+        height:250px;
+        font-family:"楷体";
+        color:#333;
+        font-size:25px;
+        font-weight:700;
+        line-height:30px;
+        padding:0;
+        transition:0.5s ease;
+        -ms-transition:0.5s ease;
+        -moz-transition:0.5s ease;
+        -webkit-transition:0.5s ease;
+        -o-transition:0.5s ease;
+        }
+    .click{
+        width:500px;
+        height:400px;
+        }
+    .click-1{
+        height:400px;}
+	.cd-content>a{
+		position:relative;
+		bottom:10px;
+		left:85%;
+		font-size:18px;
+		color:#333;
+		}
+	.cd-content>a:hover{
+		color:#999;}
+	@media (max-width: 1100px) {
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 350px;}
+		.cd-section header{
+			height:350px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-10px;
+			font-size:40px;}
+		.zong{
+			top:-10px;
+			font-size:22px;}
+		.related{
+			font-size:20px;}
+		.fa{
+			font-size:50px;
+			}
+		.cd-nav em{
+			font-size:20px;}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:24px;}
+		.img{
+			height:300px;}
+		img{
+			position:relative;
+			top:20px;
+			height:200px;}
+		.img h3{
+			font-size:22px;
+			padding:0;
+			line-height:25px;}
+		.click{
+			position:relative;
+			top:0px;
+			width:360px;
+			height:260px;
+			}
+		}
+	@media (max-width: 900px) {
+		section>header{
+			background:url(image/1.jpg) no-repeat;
+			background-size:100% 300px;}
+		.cd-section header{
+			height:300px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:0px;
+			font-size:30px;}
+		.zong{
+			top:0px;
+			font-size:20px;}
+		.related{
+			font-size:20px;}
+		.fa{
+			font-size:45px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:20px;}
+		.img{
+			height:250px;}
+		img{
+			position:relative;
+			top:15px;
+			height:180px;}
+		.img h3{
+			font-size:20px;
+			padding:0;
+			line-height:22px;}
+		.click{
+			position:relative;
+			top:0px;
+			width:280px;
+			height:200px;
+			}
+		}
+		@media (max-width: 800px) {
+		section>header{
+			background-size:100% 250px;}
+		.cd-section header{
+			height:250px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-40px;
+			font-size:30px;}
+		.zong{
+			top:-60px;
+			font-size:18px;
+			line-height:22px;}
+		.related{
+			font-size:18px;}
+		.fa{
+			font-size:40px;
+			}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		#cd-nav header h2{
+			font-size:18px;}
+		.img{
+			height:220px;}
+		img{
+			position:relative;
+			top:10px;
+			height:160px;}
+		.img h3{
+			font-size:16px;
+			padding:0;
+			line-height:18px;}
+		.click{
+			position:relative;
+			top:-5px;
+			width:250px;
+			height:180px;
+			}
+		}
+		@media (max-width: 600px) {
+		section>header{
+			background-size:100% 180px;}
+		.cd-section header{
+			height:180px;}
+		.htmleaf-header>h1{
+			position:relative;
+			top:-30px;
+			font-size:20px;}
+		.zong{
+			top:-30px;
+			font-size:12px;
+			line-height:14px;}
+		.related{
+			font-size:12px;}
+		.tubiao i{
+			left:0px;
+			top:18px;}
+		.cd-nav em{
+			font-size:14px;
+			font-weight:400;}
+		#cd-nav header h2{
+			font-size:16px;
+			font-weight:400;}
+		.img{
+			width:380px;
+			height:300px;
+			}
+		img{
+			display:block;
+			z-index:999;
+			position:relative;
+			top:-5px;
+			left:30px;
+			width:310px;
+			height:150px;}
+		.img h3{
+			position:relative;
+			top:10px;
+			font-size:12px;
+			font-weight:400;
+			line-height:18px;
+			}		
+		.click{
+			position:relative;
+			top:-10px;
+			left:-5px;
+			width:370px;
+			}
+		}
+		@media (max-width: 450px) {
+		.htmleaf-container{
+				height:auto;}
+		section>header{
+			background-size:100% 150px;}
+		.cd-section header{
+			height:150px;}
+		.zong{
+			top:-50px;
+			font-size:10px;
+			line-height:12px;}
+		.cd-nav em{
+			font-size:16px;}
+		.cd-nav li{
+			height:calc((100vh - 116px)/8);}
+		#cd-nav header h2{
+			font-size:18px;}
+		.img{
+			width:300px;
+			height:330px;
+			}
+		img{
+			position:relative;
+			top:-5px;
+			left:15px;
+			width:250px;
+			height:150px;}
+		.img h3{
+			position:relative;
+			top:10px;
+			font-size:12px;
+			line-height:18px;
+			}
+		.click{
+			left:-8px;
+			width:300px;
+			}
+		}
+    </style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<a href="#cd-nav" class="cd-nav-trigger">
+			Menu<span></span>
+		</a>
+		<main>
+			<section class="cd-section index cd-selected">
+				<header>
+					<div class="cd-title">
+						<header class="htmleaf-header">
+							<h1>欢迎来到华南农业大学<span>Welcome To SCAU</span></h1>
+                            <div class="zong">&nbsp;&nbsp;&nbsp;&nbsp;五湖四海一片林，花草虫鱼鸟兽神。每逢春暖花开季节,树上万紫千红繁花似锦,灿若红霞,偶尔点点素白,这就是紫荆花开，多少人为之惊艳，多少学子为之赞美。手绘、明信片、漫画，每一处都记录了它的美丽。</div>
+						</header>
+                        
+					</div>
+				</header>
+				<div class="cd-content">    
+                	       	
+                	<div class="img"><img src="image/view/1.jpg" title="点击查看大图" /><h3><br />&nbsp;&nbsp;&nbsp;&nbsp;行政楼——红墙绿瓦，中西合璧的新典范。行政楼位于鄱阳湖正北上方，与稻香草海共同成为广大师生、校友合影留念、赏花拍照的新景点。</h3></div>
+                    <div class="img"><img src="image/view/2.jpg"  title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;湿地公园——位于行政楼前，繁盛的树木，夏天盛开的荷花，引得无数驻足。办公楼下绿水荡，“鄱阳湖”上映红墙，来华农必游此处。</h3></div>
+                    <div class="img"><img src="image/view/3.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;田家炳综合训练馆--流线型的外形大方优美，篮球场、羽毛球场、乒乓球室、健身房、舞蹈室等等一应俱全，有颜值更有内涵。</h3></div>
+                    <div class="img"><img src="image/view/4.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;南校门--在茶山草海开阔视野的映衬下，校门牌楼巍峨雄伟、威严壮观、气势磅礴。牌楼目前成为校外车辆进入校园的主要入口，也是留影留念的绝佳背景。</h3></div>        
+                    <div class="img"><img src="image/view/5.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;树木园--建于1972年，经过几十年的栽种培育，现已成为集教学科研实验考察功能于一身的园区。其占地面积约225亩，是广东省高校中占地面积最大的校内园林。</h3></div>
+                    <div class="img"><img src="image/view/6.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;紫荆桥--多年来，华农一直致力于将“紫荆校园”打造为学校的精美名片，而紫荆桥是打造“紫荆校园”的标志性景点。桥旁种满紫荆花，三月花开，粉色彩虹因此绽放。</h3></div>
+                    <div class="img"><img src="image/view/7.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;泰山运动场--标准足球场、环形塑料跑道、篮球场、沙池、大型观众席、更衣室等设施齐全。每年的动物、宠物展期间，这里便是人与动物欢乐的海洋。</h3></div>
+                    <div class="img"><img src="image/view/8.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;第四教学楼--在教四，可以看到矗立的钟楼，充满浪漫气息的情人坡，到了晚上，周末，还能看到一群又一群身怀才艺的学生在架空层施展身手、挥洒青春。</h3></div>
+                    <div class="img"><img src="image/view/9.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;启林区运动场--网球场是启林区运动场的亮点之一。此外，每年的新生军训在启林区运动场均有会操表演，声势浩大，朝气蓬勃。</h3></div>
+                    <div class="img"><img src="image/view/10.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;第五教学楼（外国语学院）--华农最大最新的教学楼。A、B、C、D四栋教学楼布局巧妙，各有千秋。每栋楼配有多座宽敞的电梯，保证了人流多却有序。</h3></div>
+                    <div class="img"><img src="image/view/11.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;真维斯学生活动中心--以真维斯公司命名，以表达对“真维斯”捐资的感谢外，也希望学生学习真维斯创新拼搏的精神。常年有大小演出在此举行，人与建筑争艳。</h3></div>
+                    <div class="img"><img src="image/view/12.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;昭阳湖--中午时分,阳光洒在院士广场中央的昭阳湖面。昭阳湖因形如圆月而得名。顺着水波看去,可以发现零星的小野鸭。八位院士的白色雕像坐落在湖畔,栩栩如生,灵动睿智,使整个湖泊儒雅高洁,意味深厚。</h3></div>
+                    <div class="img"><img src="image/view/13.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;宁荫湖--宁荫湖边、三角市坡地，红艳艳的簕杜鹃、映山红与鸟雀们叽叽喳喳地叫开了，她们争抢着比鸟儿更高地攀上苹婆树的枝头，或者更低地斜伸入宁荫湖的水中，骄傲地把自己的红色花朵变成朝阳、落日或者晚霞。</h3></div>
+                    <div class="img"><img src="image/view/14.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;西湖--华农四大神兽之一“大白鹅”便生活在西湖之中，常见神兽排成一字队形从岸上走过，从湖中游过，引得众人纷纷拍照。西湖中还生活着颜色鲜艳的华农大锦鲤，西湖拱桥上，行人走过，如诗如画。</h3></div>
+                    <div class="img"><img src="image/view/15.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;华山学生活动中心--可同时容纳过千人的超大空间，让这里成为了各种大型活动的宠儿。相声小品大赛、十大歌手大赛，流光溢彩的舞台灯光下，是一张张美丽俊俏的脸庞。</h3></div>
+                    <div class="img"><img src="image/view/16.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;第一教学楼--有一座半身铜像十分特别，他身披布衣、手握稻穗、目光炯炯地眺望远方，他就是著名农业科学家、教育家、水稻专家——丁颖。丁颖铜像是丁颖精神的物质载体，时刻激励华农学子，将创新作为努力追求的目标。</h3></div>
+                    <div class="img"><img src="image/view/17.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;竹铭草海--“竹铭”是丁颖教授的号，第一教学大楼前有丁颖塑像，塑像前面的大草坪命名为“竹铭草海”，以纪念丁颖教授。</h3></div>
+                    <div class="img"><img src="image/view/18.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;校史馆--竣工于1934年，建筑面积达到5294平方米，被视为华农建筑的正统，浓缩华农建筑之精华。古雅多彩，线条简洁，又不失磅礴之气势。</h3></div>
+                    <div class="img"><img src="image/view/19.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;红满堂--华农人的最高学术论坛。它是全国第一个砖拱驳壳建筑，因其独特的结构造型被誉为“广东壳”，一直作为学校学术文化生活的中心。</h3></div>
+                    <div class="img"><img src="image/view/20.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;图书馆--新图书馆是华农最美的建筑之一，红白为主色的外形典雅美丽。内有完善的网络服务与多个自习座位。当温暖的阳光从窗外照入，学子们正浸润在知识的海洋中，让人不忍用言语打扰。</h3></div>
+                    <div class="img"><img src="image/view/21.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;芷园--华农老字号大饭堂。有停车位、有停车位，到了夜宵时间，三楼各种特色夜宵热气腾腾，好不热闹，是聚餐的好地方。</h3></div>
+                    <div class="img"><img src="image/view/22.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;荷园--超大的用餐空间，使得这里可以容纳多人同时用餐。三楼沁香园可提供点菜服务，优雅别致的环境吸引了许多校外人士来此用餐。</h3></div>
+                    <div class="img"><img src="image/view/23.jpg" title="点击查看大图" /><h3><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;西园--显眼的建筑，宽敞的大楼梯，便利的交通，是荷园的特色所在，这里也是校巴的发车站，来往的人络绎不绝。</h3></div>
+                    <a href="https://mp.weixin.qq.com/s?__biz=MjM5OTE2MzUwNA==&mid=402934274&idx=1&sn=f7056a5bd487445edc96202ec40fe365&scene=0&pass_ticket=loPTIyXp86%2F9uRp3iZwipAlOlRtInCe1%2FaNQSRA2L1OK3Bq8LkmCIdC72j7QBhd5" title="点击查看更多内容">更多...</a>
+                </div>
+				
+				<div class="related">
+					仅供参赛所用
+				</div>
+			</section>
+
+		</main>
+		<nav class="cd-nav-container" id="cd-nav">
+			<header>
+				<h2>你想看什么</h2>
+				<a href="#0" class="cd-close-nav">Close</a>
+			</header>
+
+			<ul class="cd-nav">
+				<li data-menu="index">
+					<a href="index.html">
+						<span class="tubiao"><i class="fa fa-fw fa-home"></i></span>
+						<em>首页</em>
+					</a>
+				</li>
+
+				<li class="cd-selected" data-menu="view">
+					<a href="view.html">
+						<span class="tubiao" style="color:#fff;"><i class="fa fa-fw fa-picture-o"></i></span>
+						<em>走遍华农</em>
+					</a>
+				</li>
+
+				<li data-menu="news">
+					<a href="news.html">
+						<span class="tubiao"><i class="fa fa-fw fa-newspaper-o"></i></span>
+						<em>新闻动态</em>
+					</a>
+				</li>
+
+				<li data-menu="student">
+					<a href="student.html">
+						<span class="tubiao"><i class="fa fa-fw fa-group"></i></span>
+						<em>学子风采</em>
+					</a>
+				</li>
+
+				<li data-menu="life">
+					<a href="life.html">
+						<span class="tubiao"><i class="fa fa-fw fa-book"></i></span>
+						<em>校园活动</em>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="cd-overlay"></div>
+		
+	</div>
+	
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/main.js"></script>
+    
+    <script>
+    	$(document).ready(function(e) {
+			$("img").click(function(){
+				$(this).toggleClass('click');
+				$(this).next().toggleClass('click-1');
+			});
+		});
+			
+    </script>
+</body>
+</html>
